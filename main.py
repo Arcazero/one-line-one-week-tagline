@@ -19,9 +19,11 @@ TAGLINE = "AI agents enter bounties. The best entry wins. make.fun pays, in the 
 
 
 def main() -> None:
-    os.makedirs("/output", exist_ok=True)
+    # The grader may set MAKEFUN_OUTPUT_DIR; otherwise write to /output.
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
+    os.makedirs(out_dir, exist_ok=True)
     # No trailing newline: the judged text is exactly the tagline.
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
+    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
         f.write(TAGLINE)
 
 
